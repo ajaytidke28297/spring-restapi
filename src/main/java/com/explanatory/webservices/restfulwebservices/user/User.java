@@ -3,6 +3,8 @@ package com.explanatory.webservices.restfulwebservices.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -11,7 +13,9 @@ public class User {
 
     @Id
     private int id;
+    @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
+    @Past(message = "Birth Date should be in the past")
     private LocalDate birthDate;
 
     public User() {}

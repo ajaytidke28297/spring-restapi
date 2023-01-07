@@ -23,14 +23,18 @@ public class UserDaoService {
         return users;
     }
 
-    public User findUserById(int id) {
-        return users.stream().filter(user -> user.getId() == id).findFirst().get();
+    public User findOne(int id) {
+        return users.stream().filter(user -> user.getId() == id).findFirst().orElse(null);
     }
 
     public User save(User user) {
         user.setId(userCount++);
         users.add(user);
         return user;
+    }
+
+    public void deleteById(int id) {
+        users.removeIf(user -> user.getId() == id);
     }
 
 }
